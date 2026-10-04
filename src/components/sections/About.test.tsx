@@ -6,7 +6,8 @@ describe("About", () => {
   it("shows the photo with alt text, the bio and the facts", () => {
     render(<About profile={profile} />);
     expect(screen.getByRole("heading", { level: 2, name: /about me/i })).toBeInTheDocument();
-    expect(screen.getByRole("img", { name: profile.photo.alt })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: profile.photo.alt }).getAttribute("src"))
+      .toContain(encodeURIComponent(profile.photo.src));
     expect(screen.getByText(profile.bio[0])).toBeInTheDocument();
     expect(screen.getByText(profile.timezone)).toBeInTheDocument();
     expect(screen.getByText(profile.responseTime)).toBeInTheDocument();
