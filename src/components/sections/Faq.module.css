@@ -1,0 +1,4 @@
+.wrap { max-width: 48rem; }
+.item { border-bottom: 1px solid var(--color-line); }
+.question { display: flex; align-items: center; min-height: var(--tap-min); padding-block: var(--space-2); font-family: var(--font-display); font-weight: 600; cursor: pointer; }
+.answer { padding-bottom: var(--space-3); color: var(--color-ink-soft); }

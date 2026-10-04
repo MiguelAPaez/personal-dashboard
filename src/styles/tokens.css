@@ -1,0 +1,72 @@
+/* All design decisions live here. Breakpoints cannot be custom properties, so component CSS
+   uses these literal values: tablet 40rem, desktop 64rem.
+   Direction: mist paper, ink, one pine-green accent. Bricolage Grotesque headlines, Newsreader text. */
+:root {
+  color-scheme: light dark;
+
+  /* Color */
+  --color-bg: #eef0ea;
+  --color-surface: #f9faf6;
+  --color-ink: #10161c;
+  --color-ink-soft: #4a545d;
+  --color-line: #cbd0c6;
+  --color-accent: #0a6b47;
+  --color-accent-strong: #07553a;
+  --color-accent-ink: #ffffff;
+  --color-focus: #1f4ed8;
+
+  /* Type */
+  --font-display: var(--font-bricolage), "Segoe UI", system-ui, sans-serif;
+  --font-body: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-md: 1.125rem;
+  --text-lg: clamp(1.3125rem, 1.15rem + 0.7vw, 1.625rem);
+  --text-xl: clamp(1.75rem, 1.3rem + 1.8vw, 2.75rem);
+  --text-3xl: clamp(2.5rem, 1.5rem + 5vw, 5rem);
+  --leading-tight: 1.05;
+  --leading-body: 1.65;
+
+  /* Space */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: clamp(3rem, 8vw, 6rem);
+
+  /* Shape */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-pill: 999px;
+  --shadow-card: 0 1px 2px color-mix(in srgb, var(--color-ink) 12%, transparent);
+  --shadow-frame: 0.375rem 0.375rem 0 var(--color-ink);
+
+  /* Layout */
+  --content-max: 72rem;
+  --gutter: clamp(1rem, 5vw, 2.5rem);
+  --tap-min: 2.75rem;
+  --header-h: 3.75rem;
+
+  /* Motion */
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0d1317;
+    --color-surface: #151d23;
+    --color-ink: #e9eee9;
+    --color-ink-soft: #a3afaa;
+    --color-line: #2a353b;
+    --color-accent: #5fd99e;
+    --color-accent-strong: #8ae8b8;
+    --color-accent-ink: #0d1317;
+    --color-focus: #8fb0ff;
+  }
+}

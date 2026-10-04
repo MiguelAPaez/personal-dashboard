@@ -1,0 +1,132 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + var(--space-4));
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: var(--leading-body);
+  overflow-wrap: anywhere; /* long URLs and stack names must never cause horizontal scroll */
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+video,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: var(--leading-tight);
+  text-wrap: balance;
+}
+h1 { font-size: var(--text-3xl); }
+h2 { font-size: var(--text-xl); }
+h3 { font-size: var(--text-lg); letter-spacing: -0.01em; }
+
+p { margin: 0 0 var(--space-4); }
+ul, ol { margin: 0; padding-left: 1.25rem; }
+a { color: inherit; text-underline-offset: 0.2em; }
+
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+.container {
+  width: min(100% - 2 * var(--gutter), var(--content-max));
+  margin-inline: auto;
+}
+
+.section { padding-block: var(--space-8); }
+
+/* Availability status: a dot plus plain text, not a decorative label. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+.eyebrow::before {
+  content: "";
+  flex-shrink: 0;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap-min);
+  padding: 0 var(--space-5);
+  border: 2px solid var(--color-ink);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+.btn:active { transform: translateY(1px); }
+/* The one action that matters everywhere it appears: a clipped corner, like a
+   voucher torn free to redeem, marks it apart from every plain .btn. */
+.btn--primary {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% calc(100% - 0.5rem), calc(100% - 0.5rem) 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 0.5rem), calc(100% - 0.5rem) 100%, 0 100%);
+}
+.btn--primary:hover { border-color: var(--color-accent-strong); background: var(--color-accent-strong); }
+/* clip-path crops the whole painted box, including the default outside focus ring
+   (outline-offset: 3px, set globally). Pull the ring inside the clipped shape here
+   so it isn't clipped away and keyboard focus stays visible. */
+.btn--primary:focus-visible { outline-offset: -6px; }
+.btn--ghost { background: transparent; color: var(--color-ink); }
+.btn--ghost:hover { background: var(--color-surface); }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

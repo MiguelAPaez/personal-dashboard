@@ -1,0 +1,8 @@
+.hero { padding-block: var(--space-7) var(--space-8); }
+.title { max-width: 16ch; }
+.lede { max-width: 40rem; color: var(--color-ink-soft); font-size: var(--text-lg); }
+.actions { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-5); }
+
+@media (min-width: 40rem) {
+  .actions { flex-direction: row; }
+}

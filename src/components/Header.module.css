@@ -1,0 +1,97 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding-top: env(safe-area-inset-top, 0px);
+  background: color-mix(in srgb, var(--color-bg) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-line);
+}
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: var(--header-h);
+}
+.brand {
+  min-width: 0;
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menuToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap-min);
+  height: var(--tap-min);
+  list-style: none;
+  cursor: pointer;
+}
+.menuToggle::-webkit-details-marker { display: none; }
+.menuIcon {
+  position: relative;
+  display: block;
+  width: 1.25rem;
+  height: 2px;
+  background: var(--color-ink);
+}
+.menuIcon::before,
+.menuIcon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-ink);
+}
+.menuIcon::before { top: -6px; }
+.menuIcon::after { top: 6px; }
+
+.mobileNav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-line);
+  font-family: var(--font-display);
+  font-weight: 500;
+}
+.mobileNav a {
+  display: flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  text-decoration: none;
+}
+.mobileNav a:hover { text-decoration: underline; }
+
+.navDesktop { display: none; }
+
+.cta { flex-shrink: 0; padding-inline: var(--space-4); font-size: var(--text-sm); }
+
+@media (min-width: 40rem) {
+  .menu { display: none; }
+  .navDesktop {
+    display: flex;
+    gap: var(--space-5);
+    margin-left: auto;
+    margin-right: var(--space-4);
+    font-family: var(--font-display);
+    font-weight: 500;
+  }
+  .navDesktop a { text-decoration: none; }
+  .navDesktop a:hover { text-decoration: underline; }
+}

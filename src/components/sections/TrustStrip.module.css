@@ -1,0 +1,9 @@
+.strip { border-block: 1px solid var(--color-line); background: var(--color-surface); }
+.list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); margin-block: 0; padding-block: var(--space-5); }
+.item { display: flex; flex-direction: column-reverse; }
+.value { margin: 0; font-family: var(--font-display); font-size: var(--text-xl); font-weight: 700; letter-spacing: -0.02em; }
+.label { color: var(--color-ink-soft); font-size: var(--text-sm); }
+
+@media (min-width: 40rem) {
+  .list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}

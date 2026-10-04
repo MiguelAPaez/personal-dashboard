@@ -1,0 +1,9 @@
+.lede { max-width: 40rem; color: var(--color-ink-soft); }
+.grid { display: grid; gap: var(--space-5); margin-top: var(--space-5); }
+
+@media (min-width: 40rem) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 64rem) {
+  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
