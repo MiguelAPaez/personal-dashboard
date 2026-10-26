@@ -21,7 +21,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <ul className={styles.stack} aria-label="Tech stack">
           {project.stack.map((tech) => <li key={tech}>{tech}</li>)}
         </ul>
-        <p className={styles.hint}>Try it live</p>
+        {project.demo && <p className={styles.hint}>Try it live</p>}
       </div>
     </article>
   );

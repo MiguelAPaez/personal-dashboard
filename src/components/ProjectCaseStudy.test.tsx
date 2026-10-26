@@ -23,4 +23,10 @@ describe("ProjectCaseStudy", () => {
     expect(screen.getByRole("link", { name: /source code/i })).toHaveAttribute("href", "https://github.com/a/b");
     expect(screen.queryByRole("link", { name: /live site/i })).toBeNull();
   });
+  it("renders a draft without a demo", () => {
+    const project = { ...projects[0], demo: undefined, draft: true };
+    render(<ProjectCaseStudy project={project} upworkUrl={upwork} />);
+    expect(screen.getByRole("heading", { level: 1, name: project.title })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /try it live/i })).toBeNull();
+  });
 });

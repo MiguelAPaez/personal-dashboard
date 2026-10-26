@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+  <rect width="1600" height="900" fill="#e4ecf2"/>
+
+  <!-- ledger ruling -->
+  <g stroke="#9fb4c4" stroke-width="2">
+    <path d="M0 120H1600M0 180H1600M0 240H1600M0 300H1600M0 360H1600M0 420H1600M0 480H1600M0 540H1600M0 600H1600M0 660H1600M0 720H1600M0 780H1600M0 840H1600"/>
+  </g>
+  <g stroke="#1d3557" stroke-width="3">
+    <path d="M190 0V900M202 0V900"/>
+  </g>
+
+  <!-- expenses: crimson ticks hanging below the line -->
+  <g fill="#b23a48">
+    <rect x="290" y="780" width="22" height="46"/>
+    <rect x="410" y="780" width="22" height="28"/>
+    <rect x="530" y="780" width="22" height="62"/>
+    <rect x="650" y="780" width="22" height="20"/>
+    <rect x="770" y="780" width="22" height="40"/>
+    <rect x="890" y="780" width="22" height="24"/>
+    <rect x="1010" y="780" width="22" height="52"/>
+    <rect x="1130" y="780" width="22" height="18"/>
+    <rect x="1250" y="780" width="22" height="34"/>
+    <rect x="1370" y="780" width="22" height="22"/>
+  </g>
+
+  <!-- savings trend -->
+  <path d="M260 700 C380 690 430 640 540 630 S700 600 790 520 S960 470 1050 400 S1230 330 1300 250 S1420 190 1470 170 L1470 780 L260 780 Z" fill="#0a6b47" opacity="0.12"/>
+  <path d="M260 700 C380 690 430 640 540 630 S700 600 790 520 S960 470 1050 400 S1230 330 1300 250 S1420 190 1470 170" fill="none" stroke="#0a6b47" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="1470" cy="170" r="34" fill="none" stroke="#1d3557" stroke-width="5"/>
+  <circle cx="1470" cy="170" r="16" fill="#1d3557"/>
+</svg>

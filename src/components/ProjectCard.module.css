@@ -1,4 +1,6 @@
-.card { position: relative; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--color-line); border-radius: var(--radius-md); background: var(--color-surface); box-shadow: var(--shadow-card); }
+.card { position: relative; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--color-line); border-radius: var(--radius-md); background: var(--color-surface); box-shadow: var(--shadow-card); transition: box-shadow var(--dur-fast) var(--ease-out), translate var(--dur-fast) var(--ease-out); }
+/* Same solid offset shadow as the demo frame: "this one is selectable" in the site's own language. */
+.card:hover, .card:focus-within { box-shadow: var(--shadow-frame); translate: -0.125rem -0.125rem; }
 .card:has(.link:focus-visible) { outline: 3px solid var(--color-focus); outline-offset: 3px; }
 .cover { position: relative; aspect-ratio: 16 / 9; background: var(--color-line); }
 .image { object-fit: cover; }
@@ -10,3 +12,8 @@
 .stack { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0 0 var(--space-4); padding: 0; list-style: none; }
 .stack li { padding: var(--space-1) var(--space-3); border: 1px solid var(--color-line); border-radius: var(--radius-pill); font-family: var(--font-mono); font-size: var(--text-xs); }
 .hint { margin: auto 0 0; color: var(--color-accent); font-family: var(--font-display); font-weight: 600; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+  .card:hover, .card:focus-within { translate: none; }
+}

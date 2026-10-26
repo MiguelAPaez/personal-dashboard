@@ -14,6 +14,8 @@ const validProject = {
   demo: { type: "component", id: "task-board" },
 };
 
+const noDemo = Object.fromEntries(Object.entries(validProject).filter(([k]) => k !== "demo"));
+
 const validProfile = {
   name: "Ada Example",
   headline: "I build fast web apps for startups.",
@@ -52,6 +54,21 @@ describe("projectSchema", () => {
   });
   it("rejects a project with no results", () => {
     expect(projectSchema.safeParse({ ...validProject, results: [] }).success).toBe(false);
+  });
+  it("accepts a cover and defaults its alt to decorative", () => {
+    const parsed = projectSchema.parse({ ...validProject, cover: { src: "/images/projects/task-board.svg" } });
+    expect(parsed.cover).toEqual({ src: "/images/projects/task-board.svg", alt: "" });
+    expect(parsed.draft).toBe(false);
+  });
+  it("rejects a cover that is not a site path", () => {
+    const result = projectSchema.safeParse({ ...validProject, cover: { src: "https://evil.example/x.svg" } });
+    expect(result.success).toBe(false);
+  });
+  it("rejects a published project without a demo", () => {
+    expect(projectSchema.safeParse(noDemo).success).toBe(false);
+  });
+  it("accepts a draft project without a demo", () => {
+    expect(projectSchema.safeParse({ ...noDemo, draft: true }).success).toBe(true);
   });
 });
 

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+  <defs>
+    <g id="card">
+      <rect width="380" height="130" rx="10" fill="#f9faf6" stroke="#10161c" stroke-width="3"/>
+      <rect x="28" y="34" width="220" height="16" rx="8" fill="#10161c" opacity="0.7"/>
+      <rect x="28" y="72" width="300" height="12" rx="6" fill="#10161c" opacity="0.25"/>
+      <rect x="28" y="96" width="180" height="12" rx="6" fill="#10161c" opacity="0.25"/>
+    </g>
+  </defs>
+  <rect width="1600" height="900" fill="#eef0ea"/>
+
+  <!-- columns -->
+  <g fill="#10161c" opacity="0.06">
+    <rect x="140" y="90" width="420" height="760" rx="16"/>
+    <rect x="590" y="90" width="420" height="760" rx="16"/>
+    <rect x="1040" y="90" width="420" height="760" rx="16"/>
+  </g>
+  <rect x="160" y="110" width="140" height="18" rx="9" fill="#10161c" opacity="0.55"/>
+  <rect x="610" y="110" width="170" height="18" rx="9" fill="#10161c" opacity="0.55"/>
+  <rect x="1060" y="110" width="110" height="18" rx="9" fill="#0a6b47"/>
+
+  <use href="#card" x="160" y="160"/>
+  <use href="#card" x="160" y="310"/>
+  <use href="#card" x="160" y="460"/>
+  <use href="#card" x="610" y="160"/>
+  <use href="#card" x="1060" y="160"/>
+  <use href="#card" x="1060" y="310"/>
+
+  <!-- drop target where the dragged card will land -->
+  <rect x="610" y="310" width="380" height="130" rx="10" fill="none" stroke="#0a6b47" stroke-width="4" stroke-dasharray="16 12"/>
+
+  <!-- card mid-drag, with the site's solid offset shadow -->
+  <g transform="translate(700 420) rotate(-6)">
+    <rect x="14" y="14" width="380" height="130" rx="10" fill="#10161c"/>
+    <rect width="380" height="130" rx="10" fill="#f4d35e" stroke="#10161c" stroke-width="3"/>
+    <rect x="28" y="34" width="220" height="16" rx="8" fill="#10161c" opacity="0.8"/>
+    <rect x="28" y="72" width="300" height="12" rx="6" fill="#10161c" opacity="0.35"/>
+    <rect x="28" y="96" width="180" height="12" rx="6" fill="#10161c" opacity="0.35"/>
+  </g>
+</svg>

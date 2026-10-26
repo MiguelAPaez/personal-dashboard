@@ -63,19 +63,27 @@ export const demoSchema = z.discriminatedUnion("type", [
   z.object({ type: z.literal("video"), src: sitePath, poster: sitePath.optional() }),
 ]);
 
-export const projectSchema = z.object({
-  slug,
-  title: text,
-  summary: text,
-  role: text,
-  stack: z.array(text).min(1),
-  problem: text,
-  solution: text,
-  results: z.array(text).min(1),
-  screenshots: z.array(z.object({ src: sitePath, alt: text })).default([]),
-  demo: demoSchema,
-  links: z.object({ live: httpsUrl.optional(), repo: httpsUrl.optional() }).default({}),
-});
+export const projectSchema = z
+  .object({
+    slug,
+    title: text,
+    summary: text,
+    role: text,
+    stack: z.array(text).min(1),
+    problem: text,
+    solution: text,
+    results: z.array(text).min(1),
+    // Designed card art; decorative by default because the title follows it.
+    cover: z.object({ src: sitePath, alt: z.string().default("") }).optional(),
+    screenshots: z.array(z.object({ src: sitePath, alt: text })).default([]),
+    demo: demoSchema.optional(),
+    links: z.object({ live: httpsUrl.optional(), repo: httpsUrl.optional() }).default({}),
+    // Drafts preview in `next dev` only (see visibleProjects) and may skip the demo until it's ready.
+    draft: z.boolean().default(false),
+  })
+  .superRefine((p, ctx) => {
+    if (!p.draft && !p.demo) ctx.addIssue({ code: "custom", message: "a published project needs a demo", path: ["demo"] });
+  });
 
 export const projectsSchema = z.array(projectSchema).superRefine((items, ctx) => {
   const seen = new Set<string>();
