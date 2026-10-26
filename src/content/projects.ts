@@ -3,18 +3,6 @@ import { projectsSchema } from "./schema";
 
 const allProjects = projectsSchema.parse([
   {
-    slug: "task-board-demo",
-    title: "Task board demo",
-    summary: "A small kanban board you can use right here in the page.",
-    role: "Full-stack developer",
-    stack: ["Next.js", "TypeScript", "PostgreSQL"],
-    problem: "A resume can't show how you handle interactive UI state — only working code can.",
-    solution: "A fully interactive kanban board, built right into this page: drag-and-drop columns, persisted state, no sign-up needed to try it.",
-    results: ["Try it live above — no account required", "Demonstrates drag-and-drop state management and clean component architecture"],
-    cover: { src: "/images/projects/task-board-demo.svg" },
-    demo: { type: "component", id: "task-board" },
-  },
-  {
     slug: "fintech-dash-demo",
     title: "Fintech Dash",
     summary: "A personal finance app for tracking daily income and expenses.",
@@ -23,7 +11,7 @@ const allProjects = projectsSchema.parse([
     problem: "Tracking daily income and expenses by hand makes it hard to tell whether you're actually saving money.",
     solution: "I designed and built Fintech Dash end-to-end — a React + Vite app for logging daily income and expenses and seeing your savings trend at a glance.",
     results: ["Built solo, front-to-back, as a personal project", "Demonstrates React state management and component architecture"],
-    cover: { src: "/images/projects/fintech-dash-demo.svg" },
+    cover: { src: "/personal-dashboard/images/projects/fintech-dash-demo.svg" },
     demo: { type: "embed", url: "https://miguelapaez.github.io/fintech-app/" },
   },
   {
@@ -39,7 +27,7 @@ const allProjects = projectsSchema.parse([
       "First load kept to about 58 KB of JavaScript; the 3D scene and video load only after the visitor starts scrolling",
       "Works with reduced motion and without WebGL: a static bean with the same content, so nobody is left out",
     ],
-    cover: { src: "/images/projects/coffee-brand.svg" },
+    cover: { src: "/personal-dashboard/images/projects/coffee-brand.svg" },
     demo: { type: "embed", url: "https://miguelapaez.github.io/coffee-brand/" },
   },
   {
@@ -55,7 +43,7 @@ const allProjects = projectsSchema.parse([
       "Deny by default: any path or method not explicitly allowed is refused",
       "The Security inspector makes each step of the encryption visible, not just claimed",
     ],
-    cover: { src: "/images/projects/encryption.svg" },
+    cover: { src: "/personal-dashboard/images/projects/encryption.svg" },
     demo: { type: "embed", url: "http://localhost:5173/" },
   },
 ]);
