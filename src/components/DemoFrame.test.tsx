@@ -59,4 +59,13 @@ describe("DemoFrame", () => {
     render(<DemoFrame demo={{ type: "video", src: "/demo.mp4" }} title="Walkthrough" />);
     expect(document.querySelector("video")).toHaveAttribute("src", "/demo.mp4");
   });
+
+  it("embeds a YouTube link right away through youtube-nocookie", () => {
+    const url = "https://youtu.be/hl08mHqEaws";
+    render(<DemoFrame demo={{ type: "youtube", url }} title="Walkthrough" />);
+    const frame = document.querySelector("iframe")!;
+    expect(frame).toHaveAttribute("src", "https://www.youtube-nocookie.com/embed/hl08mHqEaws");
+    expect(frame).toHaveAttribute("title", "Walkthrough");
+    expect(screen.getByRole("link", { name: /watch on youtube/i })).toHaveAttribute("href", url);
+  });
 });

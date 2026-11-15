@@ -18,7 +18,12 @@ export function ProjectCaseStudy({ project, upworkUrl }: Props) {
           {project.stack.map((tech) => <li key={tech}>{tech}</li>)}
         </ul>
 
-        {project.demo && <DemoFrame demo={project.demo} title={`${project.title} live demo`} />}
+        {project.demo && (
+          <DemoFrame
+            demo={project.demo}
+            title={`${project.title} ${project.demo.type === "video" || project.demo.type === "youtube" ? "video walkthrough" : "live demo"}`}
+          />
+        )}
 
         <h2>The problem</h2>
         <p>{project.problem}</p>

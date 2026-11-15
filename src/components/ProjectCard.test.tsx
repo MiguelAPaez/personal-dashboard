@@ -20,4 +20,9 @@ describe("ProjectCard", () => {
     rerender(<ProjectCard project={{ ...projects[0], demo: undefined, draft: true }} />);
     expect(screen.queryByText(/try it live/i)).toBeNull();
   });
+  it("invites watching instead of trying when the demo is a video", () => {
+    render(<ProjectCard project={{ ...projects[0], demo: { type: "youtube", url: "https://youtu.be/hl08mHqEaws" } }} />);
+    expect(screen.getByText(/watch the walkthrough/i)).toBeInTheDocument();
+    expect(screen.queryByText(/try it live/i)).toBeNull();
+  });
 });

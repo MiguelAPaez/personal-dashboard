@@ -9,5 +9,7 @@ export const credentials = z.array(credentialSchema).parse([
   { type: "study", title: "Systems Engineer", org: "Pontificia Universidad Javeriana", start: "2015", end: "2020" },
   { type: "study", title: "M.Sc. Systems Engineer and Computing", org: "Pontificia Universidad Javeriana", start: "2022", end: "2024" },
   { type: "study", title: "M.Sc. Analytics for Business Intelligence", org: "Pontificia Universidad Javeriana", start: "2022", end: "2024" },
-  { type: "certification", title: "Placeholder: Certification", org: "Issuer", start: "2023-05", verifyUrl: "https://example.com/verify" },
+  { type: "certification", title: "Claude Code 101", org: "Anthropic Education", start: "2026-05", end: "2026-05", verifyUrl: "https://verify.skilljar.com/c/ttq8zrgu4d3i" },
+  { type: "certification", title: "AI Fundamentals with IBM SkillsBuild", org: "Cisco", start: "2026-01", end: "2026-01", verifyUrl: "https://www.credly.com/badges/809e9d39-d87e-4693-a26c-f414bd402961/public_url" },
+  { type: "certification", title: "Artificial Intelligence Fundamentals", org: "IBM SkillsBuild", start: "2026-01", end: "2026-01", verifyUrl: "https://www.credly.com/badges/29e972bb-aaef-4743-ac2d-6ad60813ce95/public_url" },
 ]);

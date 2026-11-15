@@ -3,7 +3,7 @@
 import { useEffect, useReducer, useRef } from "react";
 import type { ComponentType } from "react";
 import Image from "next/image";
-import type { Demo } from "@/content/schema";
+import { youtubeId, type Demo } from "@/content/schema";
 import { demoRegistry } from "@/demos/registry";
 import { demoReducer, EMBED_TIMEOUT_MS, initialDemoState } from "./demo-state";
 import styles from "./DemoFrame.module.css";
@@ -31,9 +31,13 @@ export function DemoFrame({ demo, title }: Props) {
     }
   }, [state]);
 
-  const openUrl = demo.type === "embed" ? demo.url : undefined;
+  const openUrl = demo.type === "embed" || demo.type === "youtube" ? demo.url : undefined;
   const address =
-    demo.type === "embed" ? new URL(demo.url).host : demo.type === "video" ? "video walkthrough" : "live demo";
+    demo.type === "embed"
+      ? new URL(demo.url).host
+      : demo.type === "video" || demo.type === "youtube"
+        ? "video walkthrough"
+        : "live demo";
 
   function start() {
     startedRef.current = true;
@@ -44,6 +48,20 @@ export function DemoFrame({ demo, title }: Props) {
   let body: React.ReactNode;
   if (demo.type === "video") {
     body = <video className={styles.media} src={demo.src} poster={demo.poster} controls playsInline preload="none" aria-label={title} />;
+  } else if (demo.type === "youtube") {
+    // youtube-nocookie avoids tracking cookies until the visitor presses play.
+    // YouTube rejects embeds sent without a referrer, so keep strict-origin-when-cross-origin.
+    body = (
+      <iframe
+        className={styles.media}
+        src={`https://www.youtube-nocookie.com/embed/${youtubeId(demo.url)}`}
+        title={demo.title ?? title}
+        loading="lazy"
+        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+        referrerPolicy="strict-origin-when-cross-origin"
+      />
+    );
   } else if (state === "idle") {
     body = (
       <div className={styles.idle}>
@@ -80,7 +98,11 @@ export function DemoFrame({ demo, title }: Props) {
       {openUrl && (
         <figcaption className={styles.caption}>
           {/* Browsers do not report a blocked frame, so this stays visible in every state. */}
-          Not loading? <a href={openUrl} target="_blank" rel="noopener noreferrer">Open in new tab</a>
+          {demo.type === "youtube" ? (
+            <a href={openUrl} target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+          ) : (
+            <>Not loading? <a href={openUrl} target="_blank" rel="noopener noreferrer">Open in new tab</a></>
+          )}
         </figcaption>
       )}
     </figure>

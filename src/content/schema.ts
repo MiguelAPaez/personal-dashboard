@@ -14,6 +14,23 @@ const demoEmbedUrl = z
     (u) => u.startsWith("https://") || /^http:\/\/localhost(:\d+)?\//.test(u),
     "must be an https URL (or http://localhost for local dev previews)",
   );
+// Accepts youtu.be/ID, youtube.com/watch?v=ID, /embed/ID and /shorts/ID links.
+export function youtubeId(url: string): string | null {
+  let u: URL;
+  try {
+    u = new URL(url);
+  } catch {
+    return null;
+  }
+  if (u.protocol !== "https:") return null;
+  const host = u.hostname.replace(/^(www\.|m\.)/, "");
+  let id: string | null = null;
+  if (host === "youtu.be") id = u.pathname.slice(1);
+  else if (host === "youtube.com" || host === "youtube-nocookie.com") {
+    id = u.pathname === "/watch" ? u.searchParams.get("v") : (u.pathname.match(/^\/(?:embed|shorts)\/([^/]+)/)?.[1] ?? null);
+  }
+  return id && /^[A-Za-z0-9_-]{11}$/.test(id) ? id : null;
+}
 const sitePath = z.string().regex(/^\/[A-Za-z0-9/_\-.]+$/, "must be a site path starting with /");
 const slug = z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "lowercase letters, digits and single dashes only");
 const yearMonth = z.string().regex(/^\d{4}(-(0[1-9]|1[0-2]))?$/, "use YYYY or YYYY-MM");
@@ -61,6 +78,12 @@ export const demoSchema = z.discriminatedUnion("type", [
     poster: sitePath.optional(),
   }),
   z.object({ type: z.literal("video"), src: sitePath, poster: sitePath.optional() }),
+  z.object({
+    type: z.literal("youtube"),
+    url: z.string().refine((u) => youtubeId(u) !== null, "must be an https YouTube video link"),
+    title: text.optional(),
+    poster: sitePath.optional(),
+  }),
 ]);
 
 export const projectSchema = z
